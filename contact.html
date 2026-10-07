@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact | QuonTech Asset Management</title>
+<meta name="description" content="QuonTech Asset Management, Group 8 of the USI Lugano Asset Management Challenge 2026.">
+<link rel="icon" href="logo_navy.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html" aria-label="QuonTech home"><img src="logo_navy_h.png" alt="QuonTech Asset Management"></a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="team.html">Team</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="container">
+    <section class="contact">
+      <div class="reveal">
+        <h1>For any inquiries about our strategy or our team, please email us or fill in the contact form.</h1>
+        <address>Università della Svizzera italiana<br>Via Giuseppe Buffi 13, 6900 Lugano, Switzerland</address>
+      </div>
+      <form class="form reveal" novalidate>
+        <h2>Send us a message</h2>
+        <label for="f-name">Name *</label><input id="f-name" name="name" required placeholder="Enter your name">
+        <label for="f-surname">Surname *</label><input id="f-surname" name="surname" required placeholder="Enter your surname">
+        <label for="f-email">Email *</label><input id="f-email" name="email" type="email" required placeholder="Enter your email address">
+        <label for="f-msg">Message *</label><textarea id="f-msg" name="message" required placeholder="Write your message here"></textarea>
+        <button class="btn" type="submit">Send</button>
+        <p class="form-note" aria-live="polite"></p>
+      </form>
+    </section>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <img src="logo_white_h.png" alt="QuonTech Asset Management">
+      <p>Università della Svizzera italiana<br>Lugano, Switzerland</p>
+      <p>Asset Management Challenge 2026, Financial Modeling, USI</p>
+    </div>
+    <p>&copy; 2026 QuonTech Asset Management</p>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
