@@ -4,7 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Portfolio | QuonTech Asset Management</title>
-<meta name="description" content="QuonTech Asset Management, Group 8 of the USI Lugano Asset Management Challenge 2026.">
+<meta name="description" content="The three rounds of the Asset Management Challenge 2026, our risk budget and the performance of the QuonTech portfolio.">
+<meta name="author" content="QuonTech Asset Management">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="QuonTech Asset Management">
+<meta property="og:title" content="Portfolio | QuonTech Asset Management">
+<meta property="og:description" content="The three rounds of the Asset Management Challenge 2026, our risk budget and the performance of the QuonTech portfolio.">
+<meta property="og:url" content="https://davidrizzi.github.io/quontech/portfolio.html">
+<meta property="og:image" content="https://davidrizzi.github.io/quontech/logo_navy.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://davidrizzi.github.io/quontech/portfolio.html">
 <link rel="icon" href="logo_navy.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,24 +21,26 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="container">
     <a class="brand" href="index.html" aria-label="QuonTech home"><img src="logo_navy_h.png" alt="QuonTech Asset Management"></a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="nav">
+    <nav class="nav" aria-label="Main">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="portfolio.html" class="active">Portfolio</a>
+      <a href="documents.html">Documents</a>
       <a href="team.html">Team</a>
       <a href="contact.html">Contact</a>
     </nav>
   </div>
 </header>
-<main>
+<main id="main">
   <section class="page-head">
     <div class="container">
       <h1>Portfolio Approach</h1>
-      <p class="lead">We manage a USD 100 million long-only portfolio against the Bloomberg Global EQ:FI 60:40 Index (BMADM64), with the aim of maximising the information ratio. Each round adds a new layer to the portfolio, and each one is documented in a technical report with the full trade list.</p>
+      <p class="lead">We manage USD 100 million, long-only, in three rounds. The first round sets a strategic asset allocation and fixes it for the rest of the challenge; the second and third deviate from it tactically, each within a stated budget of active risk. Performance is measured by the Sharpe Ratio of the returns realised from the start of the first round to 27 December 2026.</p>
       <hr class="rule">
     </div>
   </section>
@@ -39,35 +50,73 @@
         <div class="round reveal">
           <div class="no">01</div><div class="bar"></div>
           <h3>First round</h3>
-          <p>Strategic and tactical allocation with broad-asset-class ETFs. Presentations 20 and 22 October 2026.</p>
-          <a class="btn is-disabled" data-report="reports/round1_report.pdf">Report coming soon</a>
+          <p class="round-sub">Strategic asset allocation</p>
+          <p>We allocate the full USD 100 million across broad asset classes with long-only ETFs: the long-run allocation we consider most appropriate, built to an annual volatility target of 8%. The weights come from an explicit method, and the allocation is backtested with monthly rebalancing. This allocation does not change again: it is the reference against which everything we do later is measured.</p>
+          <p class="round-date">Presented 20 and 22 October 2026</p>
         </div>
         <div class="round reveal">
           <div class="no">02</div><div class="bar"></div>
           <h3>Second round</h3>
-          <p>Discretionary equity investing: one third of the portfolio rebalanced into selected stocks with clear catalysts. Presentations 10 and 12 November 2026.</p>
-          <a class="btn is-disabled" data-report="reports/round2_report.pdf">Report coming soon</a>
+          <p class="round-sub">Discretionary equity investing</p>
+          <p>We sell part of the allocation and invest the proceeds in individual stocks, chosen on an explicit valuation and on catalysts we expect before the end of the year. The deviation is sized by a tracking-error budget against our own allocation, between 2% and 5% per year, so that the active risk stays deliberate rather than accidental.</p>
+          <p class="round-date">Presented 10 and 12 November 2026</p>
         </div>
         <div class="round reveal">
           <div class="no">03</div><div class="bar"></div>
           <h3>Third round</h3>
-          <p>Quantitative and macro strategies on at least one third of the portfolio, using stocks and ETFs. Presentations 1 and 3 December 2026.</p>
-          <a class="btn is-disabled" data-report="reports/round3_report.pdf">Report coming soon</a>
+          <p class="round-sub">Quantitative and macro strategies</p>
+          <p>We add two tactical strategies: one quantitative, built on factors such as value, momentum, quality or low beta, and one macro, expressed through the yield curve, currencies, commodities or a global theme. Total ex ante tracking error against our allocation stays at or below 7% per year, and every stock from the second round is kept or closed on the evidence.</p>
+          <p class="round-date">Presented 1 and 3 December 2026</p>
         </div>
       </div>
+    </div>
+  </section>
+  <section class="section section-grey">
+    <div class="container">
+      <h2 class="section-title">Risk framework</h2>
+      <div class="cards">
+        <div class="card reveal"><h3>Volatility target</h3><p>The strategic allocation targets 8% annual volatility, with ex ante volatility between 7% and 9%, computed from the covariance matrix of monthly USD returns over the last sixty months and annualised.</p></div>
+        <div class="card reveal"><h3>Value at Risk</h3><p>We translate that risk into a one-month Value at Risk at the 5% level, reported both as a percentage of the portfolio and in dollars, and we compare realised volatility with the target at every round.</p></div>
+        <div class="card reveal"><h3>Active risk</h3><p>Tactical deviations are measured as tracking error against our own allocation: 2% to 5% per year in the second round, at most 7% in the third, including the positions we carry over.</p></div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Performance</h2>
+      <p class="lead center">Updated after each round, on the returns realised since the start of the challenge.</p>
+      <table class="facts perf reveal">
+        <thead><tr><th scope="col">As of</th><th scope="col">Return</th><th scope="col">Volatility</th><th scope="col">Sharpe Ratio</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">First round</th><td colspan="3" class="pending">Published after 6 November 2026</td></tr>
+          <tr><th scope="row">Second round</th><td colspan="3" class="pending">Published after 27 November 2026</td></tr>
+          <tr><th scope="row">End of challenge</th><td colspan="3" class="pending">Published after 27 December 2026</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 </main>
 <footer class="site-footer">
   <div class="container">
-    <div>
+    <div class="f-brand">
       <img src="logo_white_h.png" alt="QuonTech Asset Management">
-      <p>Università della Svizzera italiana<br>Lugano, Switzerland</p>
+      <p>Universit&agrave; della Svizzera italiana<br>Lugano, Switzerland</p>
       <p>Asset Management Challenge 2026, Financial Modeling, USI</p>
     </div>
-    <p>&copy; 2026 QuonTech Asset Management</p>
+    <nav class="f-nav" aria-label="Footer">
+      <a href="about.html">About</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="documents.html">Documents</a>
+      <a href="team.html">Team</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="f-meta">
+      <p>&copy; 2026 QuonTech Asset Management</p>
+      <p class="disclaimer">Student project. The portfolio is managed in a simulated environment for the Financial Modeling course and is not an offer or a recommendation to invest.</p>
+    </div>
   </div>
 </footer>
+<button class="to-top" aria-label="Back to top">&uarr;</button>
 <script src="main.js"></script>
 </body>
 </html>

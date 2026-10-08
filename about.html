@@ -4,7 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About | QuonTech Asset Management</title>
-<meta name="description" content="QuonTech Asset Management, Group 8 of the USI Lugano Asset Management Challenge 2026.">
+<meta name="description" content="Company profile, investment approach and investment policy of QuonTech Asset Management, Group 8 of the Asset Management Challenge 2026 at USI Lugano.">
+<meta name="author" content="QuonTech Asset Management">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="QuonTech Asset Management">
+<meta property="og:title" content="About | QuonTech Asset Management">
+<meta property="og:description" content="Company profile, investment approach and investment policy of QuonTech Asset Management, Group 8 of the Asset Management Challenge 2026 at USI Lugano.">
+<meta property="og:url" content="https://davidrizzi.github.io/quontech/about.html">
+<meta property="og:image" content="https://davidrizzi.github.io/quontech/logo_navy.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://davidrizzi.github.io/quontech/about.html">
 <link rel="icon" href="logo_navy.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,47 +21,78 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="container">
     <a class="brand" href="index.html" aria-label="QuonTech home"><img src="logo_navy_h.png" alt="QuonTech Asset Management"></a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="nav">
+    <nav class="nav" aria-label="Main">
       <a href="index.html">Home</a>
       <a href="about.html" class="active">About</a>
       <a href="portfolio.html">Portfolio</a>
+      <a href="documents.html">Documents</a>
       <a href="team.html">Team</a>
       <a href="contact.html">Contact</a>
     </nav>
   </div>
 </header>
-<main>
+<main id="main">
   <section class="band">
     <div class="container reveal">
       <h1>Company profile</h1>
-      <p>QuonTech Asset Management is the investment team of Group 8 in the USI Lugano Asset Management Challenge 2026. We manage a USD 100 million long-only portfolio, measured against the Bloomberg Global EQ:FI 60:40 Index and ranked on its information ratio. The challenge has three rounds: a strategic allocation with broad-asset-class ETFs, a discretionary equity round in which we select individual stocks, and a final round built on quantitative and macro strategies. Our goal is to add value over the benchmark with controlled active risk and to explain every decision we take.</p>
+      <p>QuonTech Asset Management is the investment team of Group 8 in the Asset Management Challenge 2026, part of the Financial Modeling course at USI Lugano. We manage a long-only portfolio of USD 100 million from October to the end of December 2026. The portfolio is built in three rounds: a strategic asset allocation that stays fixed until the end of the challenge, and two tactical deviations from it. Performance is measured by the Sharpe Ratio of the realised returns, with the one-month US Treasury bill as the risk-free rate. Our goal is to earn that return inside a risk budget we state in advance, and to be able to explain every position we hold.</p>
     </div>
   </section>
   <section class="section">
     <div class="container">
       <h2 class="section-title">Our approach</h2>
       <div class="cards">
-        <div class="card reveal"><h3>Quantitative Precision</h3><p>We use optimization, risk budgeting, factor signals and backtesting to set weights and to understand where our risk comes from.</p></div>
-        <div class="card reveal"><h3>Fundamental and Macro Insight</h3><p>We value companies with the methods seen in class, look for catalysts that can re-rate them before year-end, and link every position to our view on growth, inflation and central banks.</p></div>
-        <div class="card reveal"><h3>Disciplined Risk Control</h3><p>We manage tracking error against the benchmark, set position limits, watch drawdowns and follow the rules we set.</p></div>
+        <div class="card reveal"><h3>Quantitative Precision</h3><p>We set the weights with optimisation and risk budgeting, we measure the risk contribution of every position, and we backtest the allocation with monthly rebalancing before we commit capital to it.</p></div>
+        <div class="card reveal"><h3>Fundamental and Macro Insight</h3><p>We value companies with the methods of the course, we look for catalysts that can re-rate them within our horizon, and we link every tactical position to a view on growth, inflation and central banks.</p></div>
+        <div class="card reveal"><h3>Disciplined Risk Control</h3><p>The allocation is built to a volatility target, the deviations are limited by a tracking-error budget against it, and both are reported ex ante, not justified after the fact.</p></div>
       </div>
+    </div>
+  </section>
+  <section class="section section-grey">
+    <div class="container">
+      <h2 class="section-title">Investment policy at a glance</h2>
+      <table class="facts reveal">
+        <tbody>
+          <tr><th scope="row">Capital</th><td>USD 100 million, allocated at inception. Cash earns no interest.</td></tr>
+          <tr><th scope="row">Universe</th><td>Global equities and exchange traded products. The first round uses only ETFs on broad asset classes; individual stocks enter from the second round.</td></tr>
+          <tr><th scope="row">Positions</th><td>Long-only in every round. No short selling and no borrowing. The number of positions is kept deliberately low.</td></tr>
+          <tr><th scope="row">Objective</th><td>The highest Sharpe Ratio we can earn inside our risk budget, with the one-month US Treasury bill as the risk-free rate.</td></tr>
+          <tr><th scope="row">Risk budget</th><td>8% annual volatility target on the strategic allocation, with ex ante volatility between 7% and 9%, and a one-month 5% Value at Risk reported in percent and in dollars.</td></tr>
+          <tr><th scope="row">Active risk</th><td>Ex ante tracking error against our own allocation: between 2% and 5% in the second round, at most 7% in the third.</td></tr>
+          <tr><th scope="row">Reference</th><td>Our strategic asset allocation, fixed in the first round. The challenge sets no common benchmark.</td></tr>
+          <tr><th scope="row">Horizon</th><td>From the first round to 27 December 2026. The portfolio is rebalanced once per round and held unchanged in between.</td></tr>
+          <tr><th scope="row">Reporting</th><td>A technical report, a full portfolio description and a public presentation at every round, published on this website.</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 </main>
 <footer class="site-footer">
   <div class="container">
-    <div>
+    <div class="f-brand">
       <img src="logo_white_h.png" alt="QuonTech Asset Management">
-      <p>Università della Svizzera italiana<br>Lugano, Switzerland</p>
+      <p>Universit&agrave; della Svizzera italiana<br>Lugano, Switzerland</p>
       <p>Asset Management Challenge 2026, Financial Modeling, USI</p>
     </div>
-    <p>&copy; 2026 QuonTech Asset Management</p>
+    <nav class="f-nav" aria-label="Footer">
+      <a href="about.html">About</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="documents.html">Documents</a>
+      <a href="team.html">Team</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="f-meta">
+      <p>&copy; 2026 QuonTech Asset Management</p>
+      <p class="disclaimer">Student project. The portfolio is managed in a simulated environment for the Financial Modeling course and is not an offer or a recommendation to invest.</p>
+    </div>
   </div>
 </footer>
+<button class="to-top" aria-label="Back to top">&uarr;</button>
 <script src="main.js"></script>
 </body>
 </html>

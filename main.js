@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try { sessionStorage.setItem("qt-intro-seen", "1"); } catch (e) {}
         setTimeout(() => intro.classList.add("is-gone"), 1200);
       };
-      setTimeout(open, 2000);            // curtain opens on its own
+      setTimeout(open, 2000);                 // curtain opens on its own
       intro.addEventListener("click", open);  // or on click
       window.addEventListener("wheel", open, { once: true, passive: true });
     }
@@ -52,21 +52,30 @@ document.addEventListener("DOMContentLoaded", () => {
     items.forEach((el) => el.classList.add("in"));
   }
 
-  /* ---------- Report buttons: enabled automatically when the PDF exists ---------- */
+  /* ---------- Back to top ---------- */
+  const toTop = document.querySelector(".to-top");
+  if (toTop) {
+    const onScroll = () => toTop.classList.toggle("show", window.scrollY > 700);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  }
+
+  /* ---------- Document buttons: enabled automatically when the PDF exists ---------- */
   document.querySelectorAll("[data-report]").forEach(async (btn) => {
     const url = btn.getAttribute("data-report");
     try {
       const res = await fetch(url, { method: "HEAD", cache: "no-store" });
       if (res.ok) {
         btn.href = url;
-        btn.textContent = "Download report";
+        btn.textContent = "Download";
         btn.classList.remove("is-disabled");
         btn.setAttribute("download", "");
       }
-    } catch (e) { /* keep "Report coming soon" */ }
+    } catch (e) { /* keep "Coming soon" */ }
   });
 
-  /* ---------- Team photos: show photo if assets/img/team/<name>.jpg exists ---------- */
+  /* ---------- Team photos: show photo if team/<name>.jpg exists ---------- */
   document.querySelectorAll(".member .photo img").forEach((img) => {
     img.addEventListener("error", () => img.remove());
   });

@@ -4,7 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Team | QuonTech Asset Management</title>
-<meta name="description" content="QuonTech Asset Management, Group 8 of the USI Lugano Asset Management Challenge 2026.">
+<meta name="description" content="The six MSc students of USI Lugano behind QuonTech Asset Management.">
+<meta name="author" content="QuonTech Asset Management">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="QuonTech Asset Management">
+<meta property="og:title" content="Team | QuonTech Asset Management">
+<meta property="og:description" content="The six MSc students of USI Lugano behind QuonTech Asset Management.">
+<meta property="og:url" content="https://davidrizzi.github.io/quontech/team.html">
+<meta property="og:image" content="https://davidrizzi.github.io/quontech/logo_navy.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://davidrizzi.github.io/quontech/team.html">
 <link rel="icon" href="logo_navy.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,20 +21,22 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="container">
     <a class="brand" href="index.html" aria-label="QuonTech home"><img src="logo_navy_h.png" alt="QuonTech Asset Management"></a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="nav">
+    <nav class="nav" aria-label="Main">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="portfolio.html">Portfolio</a>
+      <a href="documents.html">Documents</a>
       <a href="team.html" class="active">Team</a>
       <a href="contact.html">Contact</a>
     </nav>
   </div>
 </header>
-<main>
+<main id="main">
   <section class="band">
     <div class="container reveal">
       <h1>Team</h1>
@@ -71,14 +82,25 @@
 </main>
 <footer class="site-footer">
   <div class="container">
-    <div>
+    <div class="f-brand">
       <img src="logo_white_h.png" alt="QuonTech Asset Management">
-      <p>Università della Svizzera italiana<br>Lugano, Switzerland</p>
+      <p>Universit&agrave; della Svizzera italiana<br>Lugano, Switzerland</p>
       <p>Asset Management Challenge 2026, Financial Modeling, USI</p>
     </div>
-    <p>&copy; 2026 QuonTech Asset Management</p>
+    <nav class="f-nav" aria-label="Footer">
+      <a href="about.html">About</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="documents.html">Documents</a>
+      <a href="team.html">Team</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="f-meta">
+      <p>&copy; 2026 QuonTech Asset Management</p>
+      <p class="disclaimer">Student project. The portfolio is managed in a simulated environment for the Financial Modeling course and is not an offer or a recommendation to invest.</p>
+    </div>
   </div>
 </footer>
+<button class="to-top" aria-label="Back to top">&uarr;</button>
 <script src="main.js"></script>
 </body>
 </html>
