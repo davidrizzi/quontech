@@ -1,10 +1,116 @@
 {
-  "status": "awaiting_first_validated_update",
-  "as_of": null,
+  "status": "validated_eod",
+  "holdings_status": "active",
   "portfolio_name": "QuonTech - Portfolio D (Inflation Resilient, Equal Weight)",
   "currency": "USD",
   "reference_date": "2026-10-16",
   "first_observation": "2026-10-19",
-  "metrics": null,
-  "series": []
+  "holdings_valid_until": "2026-11-06",
+  "as_of": "2026-10-26",
+  "last_updated_utc": "2026-10-27T21:25:09+00:00",
+  "source": "Yahoo Finance prices via unofficial yfinance; Bloomberg initial basket; FRED DGS1MO risk-free",
+  "method": "Bloomberg reference-close basket values + vendor closing price relatives, chain-linked across holding periods; cash + declared dividends on ex-dates; not exact PRTU NAV. Splits force manual review.",
+  "metrics_method": "Return compounded over the window. Volatility = sample st. dev. of daily returns x sqrt(252). Sharpe = (mean daily return - mean daily 1-month T-bill rate [yield/252]) / st. dev. of daily returns x sqrt(252). Volatility and Sharpe shown from 5 daily returns.",
+  "risk_free_source": "1-month US Treasury bill (FRED DGS1MO, comparable to Bloomberg USGG1M). Yield known at the previous close, divided by 252 for each daily return.",
+  "initial_capital_usd": 100000000.0,
+  "latest_nav_usd": 100108720.93,
+  "latest_return_pct": 0.108721,
+  "metrics": {
+    "to_date": {
+      "start_close": "2026-10-16",
+      "as_of_close": "2026-10-26",
+      "n_returns": 6,
+      "return_pct": 0.1087,
+      "volatility_pct": 4.041,
+      "sharpe": 0.1301,
+      "risk_free_ann_pct": 4.1067
+    },
+    "milestones": [
+      {
+        "key": "first_round",
+        "label": "First round",
+        "start": "2026-10-16",
+        "as_of": "2026-11-06",
+        "status": "pending"
+      },
+      {
+        "key": "second_round",
+        "label": "Second round",
+        "start": "2026-11-06",
+        "as_of": "2026-11-27",
+        "status": "pending"
+      },
+      {
+        "key": "third_round",
+        "label": "Third round",
+        "start": "2026-11-27",
+        "as_of": "2026-12-27",
+        "status": "pending"
+      },
+      {
+        "key": "whole_challenge",
+        "label": "Whole challenge",
+        "start": "2026-10-16",
+        "as_of": "2026-12-27",
+        "status": "pending"
+      }
+    ]
+  },
+  "benchmark_notice": "Round 1 portfolio IS the SAA, not a portfolio with independent SAA excess returns.",
+  "series": [
+    {
+      "date": "2026-10-19",
+      "period": "Round 1 SAA",
+      "nav_usd": 99743985.34,
+      "return_pct": -0.256015,
+      "index_100": 99.743985,
+      "daily_return_pct": -0.256015,
+      "risk_free_pct": 0.01634921
+    },
+    {
+      "date": "2026-10-20",
+      "period": "Round 1 SAA",
+      "nav_usd": 100071928.11,
+      "return_pct": 0.071928,
+      "index_100": 100.071928,
+      "daily_return_pct": 0.328785,
+      "risk_free_pct": 0.01630952
+    },
+    {
+      "date": "2026-10-21",
+      "period": "Round 1 SAA",
+      "nav_usd": 100183766.28,
+      "return_pct": 0.183766,
+      "index_100": 100.183766,
+      "daily_return_pct": 0.111758,
+      "risk_free_pct": 0.01626984
+    },
+    {
+      "date": "2026-10-22",
+      "period": "Round 1 SAA",
+      "nav_usd": 99856299.47,
+      "return_pct": -0.143701,
+      "index_100": 99.856299,
+      "daily_return_pct": -0.326866,
+      "risk_free_pct": 0.01623016
+    },
+    {
+      "date": "2026-10-23",
+      "period": "Round 1 SAA",
+      "nav_usd": 100006270.89,
+      "return_pct": 0.006271,
+      "index_100": 100.006271,
+      "daily_return_pct": 0.150187,
+      "risk_free_pct": 0.01630952
+    },
+    {
+      "date": "2026-10-26",
+      "period": "Round 1 SAA",
+      "nav_usd": 100108720.93,
+      "return_pct": 0.108721,
+      "index_100": 100.108721,
+      "daily_return_pct": 0.102444,
+      "risk_free_pct": 0.01630952
+    }
+  ]
 }
