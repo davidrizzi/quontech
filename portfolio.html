@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/quontech-portfolio.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -84,16 +85,31 @@
   <section class="section">
     <div class="container">
       <h2 class="section-title tight">Performance</h2>
-      <p class="lead center">Updated after each round, on the returns realised since the start of the challenge.</p>
+      <p class="lead center">Tracked every trading day from end-of-day prices, starting from the USD 100 million basket valued at the close of 16 October 2026. The table below reports each round on its own period and the whole challenge, as in the challenge guidelines.</p>
+      <div class="qt-performance" data-quontech-performance data-qt-source="data/portfolio_performance.json" aria-labelledby="qt-perf-label">
+        <dl class="qt-kpis" id="qt-perf-label">
+          <div class="qt-kpi qt-kpi--hero"><dt>Return since 16 Oct</dt><dd><span class="qt-value is-empty" data-qt-return>&mdash;</span><span class="qt-sub" data-qt-obs>Awaiting data</span></dd></div>
+          <div class="qt-kpi"><dt>Portfolio value</dt><dd><span class="qt-value is-empty" data-qt-nav>&mdash;</span><span class="qt-sub">Cash and dividends included</span></dd></div>
+          <div class="qt-kpi"><dt>Volatility</dt><dd><span class="qt-value is-empty" data-qt-vol>&mdash;</span><span class="qt-sub">Annualised, daily returns</span></dd></div>
+          <div class="qt-kpi"><dt>Sharpe Ratio</dt><dd><span class="qt-value is-empty" data-qt-sharpe>&mdash;</span><span class="qt-sub">Annualised, vs 1-month T-bill</span></dd></div>
+        </dl>
+        <div class="qt-chart" data-qt-chart aria-live="polite"></div>
+        <div class="qt-foot">
+          <p>Estimates from independent end-of-day prices, cash and dividends on the ex-date; risk-free rate is the 1-month US Treasury bill. Official figures are those computed in Bloomberg and may differ slightly.</p>
+          <p class="qt-status" data-qt-status>Awaiting the first verified US close</p>
+        </div>
+      </div>
+      <h3 class="perf-sub">At each round</h3>
       <table class="facts perf reveal">
-        <thead><tr><th scope="col">As of</th><th scope="col">Return</th><th scope="col">Volatility</th><th scope="col">Sharpe Ratio</th></tr></thead>
+        <thead><tr><th scope="col">Period</th><th scope="col">Return</th><th scope="col">Volatility</th><th scope="col">Sharpe Ratio</th></tr></thead>
         <tbody>
-          <tr><th scope="row">First round</th><td class="pending">&mdash;</td><td class="pending">&mdash;</td><td class="pending">&mdash;</td></tr>
-          <tr><th scope="row">Second round</th><td class="pending">&mdash;</td><td class="pending">&mdash;</td><td class="pending">&mdash;</td></tr>
-          <tr><th scope="row">End of challenge</th><td class="pending">&mdash;</td><td class="pending">&mdash;</td><td class="pending">&mdash;</td></tr>
+          <tr data-qt-milestone="first_round"><th scope="row">First round</th><td class="pending" data-label="Return">&mdash;</td><td class="pending" data-label="Volatility">&mdash;</td><td class="pending" data-label="Sharpe Ratio">&mdash;</td></tr>
+          <tr data-qt-milestone="second_round"><th scope="row">Second round</th><td class="pending" data-label="Return">&mdash;</td><td class="pending" data-label="Volatility">&mdash;</td><td class="pending" data-label="Sharpe Ratio">&mdash;</td></tr>
+          <tr data-qt-milestone="third_round"><th scope="row">Third round</th><td class="pending" data-label="Return">&mdash;</td><td class="pending" data-label="Volatility">&mdash;</td><td class="pending" data-label="Sharpe Ratio">&mdash;</td></tr>
+          <tr data-qt-milestone="whole_challenge"><th scope="row">Whole challenge</th><td class="pending" data-label="Return">&mdash;</td><td class="pending" data-label="Volatility">&mdash;</td><td class="pending" data-label="Sharpe Ratio">&mdash;</td></tr>
         </tbody>
       </table>
-      <p class="table-note reveal">Figures are published after each round: 6 November, 27 November and 27 December 2026.</p>
+      <p class="table-note reveal">Rounds run from close to close: 16 October to 6 November, 6 November to 27 November, 27 November to 27 December 2026. The whole challenge, from 16 October to 27 December, is the basis of the ranking. Volatility and Sharpe Ratio are annualised from daily returns.</p>
     </div>
   </section>
 </main>
@@ -125,5 +141,6 @@
 </footer>
 <button class="to-top" aria-label="Back to top">&uarr;</button>
 <script src="main.js"></script>
+<script defer src="assets/quontech-portfolio.js"></script>
 </body>
 </html>

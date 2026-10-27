@@ -1,0 +1,43 @@
+{
+  "portfolio_name": "QuonTech - Portfolio D (Inflation Resilient, Equal Weight)",
+  "source_portfolio_label": "TRI-FORCE / U33115354-3",
+  "currency": "USD",
+  "initial_capital_usd": 100000000.00,
+  "first_public_observation_date": "2026-10-19",
+  "risk_free": {
+    "series": "DGS1MO",
+    "description": "1-month US Treasury bill (FRED DGS1MO, comparable to Bloomberg USGG1M). Yield known at the previous close, divided by 252 for each daily return.",
+    "max_staleness_days": 7
+  },
+  "milestones": [
+    {"key": "first_round", "label": "First round", "start": "2026-10-16", "as_of": "2026-11-06"},
+    {"key": "second_round", "label": "Second round", "start": "2026-11-06", "as_of": "2026-11-27"},
+    {"key": "third_round", "label": "Third round", "start": "2026-11-27", "as_of": "2026-12-27"},
+    {"key": "whole_challenge", "label": "Whole challenge", "start": "2026-10-16", "as_of": "2026-12-27"}
+  ],
+  "periods": [
+    {
+      "label": "Round 1 SAA",
+      "reference_date": "2026-10-16",
+      "valid_until": "2026-11-06",
+      "cash_usd": 1134.93,
+      "basis_description": "Official Bloomberg 16 Oct 2026 closing-price construction; orders entered 17 Oct. Daily observed closes begin 19 Oct.",
+      "positions": [
+        {"ticker":"IVV","shares":14492,"official_basis_usd":11110581.64,"official_reference_close":766.67,"asset_class":"Equities"},
+        {"ticker":"VEA","shares":159895,"official_basis_usd":11111103.55,"official_reference_close":69.49,"asset_class":"Equities"},
+        {"ticker":"XLV","shares":62877,"official_basis_usd":11110994.67,"official_reference_close":176.71,"asset_class":"Equities"},
+        {"ticker":"XLE","shares":162824,"official_basis_usd":11111109.76,"official_reference_close":68.24,"asset_class":"Equities"},
+        {"ticker":"TIP","shares":105278,"official_basis_usd":11111040.12,"official_reference_close":105.54,"asset_class":"Fixed Income"},
+        {"ticker":"SHY","shares":136567,"official_basis_usd":11111091.12,"official_reference_close":81.36,"asset_class":"Fixed Income"},
+        {"ticker":"IGSB","shares":216169,"official_basis_usd":11111086.60,"official_reference_close":51.40,"asset_class":"Fixed Income"},
+        {"ticker":"GLD","shares":29085,"official_basis_usd":11110760.85,"official_reference_close":382.01,"asset_class":"Real Assets"},
+        {"ticker":"PDBC","shares":552516,"official_basis_usd":11111096.76,"official_reference_close":20.11,"asset_class":"Real Assets"}
+      ]
+    }
+  ],
+  "intraday_reference_not_eod": {
+    "date": "2026-10-27",
+    "reference_nav_usd": 100118022.02,
+    "provenance": "U33115354-3.xlsx Bloomberg PRTU export; time of valuation not specified; NOT valid as an EOD close checkpoint"
+  }
+}

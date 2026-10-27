@@ -1,0 +1,68 @@
+/* QuonTech performance tracker. Scoped to .qt-*; uses the site tokens from style.css. */
+.qt-performance { margin: 40px 0 56px; }
+.qt-kpis {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 0;
+  border-top: 1px solid var(--navy, #0C1C2F); border-bottom: 1px solid var(--line, #DDE3EA);
+}
+.qt-kpi { padding: 22px 24px 20px; }
+.qt-kpi + .qt-kpi { border-left: 1px solid var(--line, #DDE3EA); }
+.qt-kpi dt {
+  font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted, #5B6878); margin-bottom: 8px;
+}
+.qt-kpi dd { font-variant-numeric: tabular-nums; color: var(--navy, #0C1C2F); }
+.qt-kpi .qt-value { font-family: var(--sans); font-size: 26px; font-weight: 500; line-height: 1.2; }
+.qt-kpi--hero .qt-value { font-family: var(--serif); font-size: clamp(34px, 4.2vw, 48px); font-weight: 600; line-height: 1.05; }
+.qt-kpi .qt-sub { display: block; margin-top: 6px; font-size: 13px; color: var(--muted, #5B6878); }
+.qt-value.is-empty, .facts td.is-empty { color: var(--muted, #5B6878); }
+
+.qt-chart { position: relative; height: 280px; margin-top: 28px; }
+.qt-performance:not(.is-live) .qt-chart { display: none; }
+.qt-svg { display: block; overflow: visible; touch-action: pan-y; }
+.qt-grid { stroke: var(--line, #DDE3EA); stroke-width: 1; }
+.qt-base { stroke: var(--steel-light, #C9D6E5); stroke-width: 1; stroke-dasharray: 4 4; }
+.qt-line { fill: none; stroke: var(--navy, #0C1C2F); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.qt-end { fill: var(--navy, #0C1C2F); stroke: var(--white, #fff); stroke-width: 2; }
+.qt-axis { fill: var(--muted, #5B6878); font: 12px var(--sans); font-variant-numeric: tabular-nums; }
+.qt-base-label { fill: var(--initials, #74879D); }
+.qt-cross { stroke: var(--muted, #5B6878); stroke-width: 1; }
+.qt-dot { fill: var(--navy, #0C1C2F); stroke: var(--white, #fff); stroke-width: 2; }
+.qt-hit { fill: transparent; cursor: crosshair; }
+.qt-tip {
+  position: absolute; pointer-events: none; min-width: 168px; padding: 10px 12px;
+  background: var(--white, #fff); border: 1px solid var(--line, #DDE3EA); box-shadow: 0 6px 18px rgba(12, 28, 47, .10);
+  font-size: 13px; line-height: 1.5; color: var(--text, #1E2A38); font-variant-numeric: tabular-nums;
+}
+.qt-tip strong { display: block; color: var(--navy, #0C1C2F); font-weight: 600; margin-bottom: 4px; }
+.qt-tip span { display: flex; justify-content: space-between; gap: 16px; }
+.qt-tip em { font-style: normal; color: var(--muted, #5B6878); }
+
+.qt-foot {
+  display: flex; justify-content: space-between; gap: 24px; margin-top: 18px; padding-top: 14px;
+  border-top: 1px solid var(--line, #DDE3EA); font-size: 13px; color: var(--muted, #5B6878); line-height: 1.6;
+}
+.qt-status { font-weight: 600; color: var(--navy, #0C1C2F); white-space: nowrap; }
+.qt-status.is-error { color: #8A2F2A; }
+
+.perf-sub { font-family: var(--sans); font-size: 12.5px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--navy, #0C1C2F); margin: 0 0 14px; }
+.facts .qt-asof { display: block; margin-top: 4px; font-size: 11.5px; letter-spacing: .02em; text-transform: none; font-weight: 400; color: var(--muted, #5B6878); }
+.facts.perf td { font-variant-numeric: tabular-nums; }
+
+@media (max-width: 720px) {
+  .facts.perf td { display: flex; justify-content: space-between; gap: 16px; }
+  .facts.perf td::before {
+    content: attr(data-label); font-size: 12px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--muted, #5B6878);
+  }
+}
+@media (max-width: 760px) {
+  .qt-kpis { grid-template-columns: 1fr 1fr; }
+  .qt-kpi--hero, .qt-kpi:nth-child(2) { grid-column: 1 / -1; }
+  .qt-kpi + .qt-kpi { border-left: 0; }
+  .qt-kpi:nth-child(n+2) { border-top: 1px solid var(--line, #DDE3EA); }
+  .qt-kpi:nth-child(4) { border-left: 1px solid var(--line, #DDE3EA); }
+  .qt-kpi { padding: 16px 14px; }
+  .qt-chart { height: 230px; }
+  .qt-foot { display: block; }
+  .qt-status { display: block; margin-top: 8px; white-space: normal; }
+}
