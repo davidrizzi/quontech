@@ -188,11 +188,61 @@ def fetch_text(url, attempts=4, timeout=45, backoff=(5, 15, 30), sleep=time.slee
     raise RuntimeError(f'Download failed after {attempts} attempts: {url}') from last
 
 
+def parse_treasury_csv(text):
+    """Treasury 'Daily Treasury Par Yield Curve Rates' CSV -> sorted [(iso_date, 1-month yield pct)].
+
+    Same underlying series as FRED DGS1MO (1-month constant-maturity yield). The column is found
+    by name, so a changed layout fails closed instead of reading the wrong maturity."""
+    reader = csv.reader(io.StringIO(text))
+    header = next(reader, None)
+    if not header:
+        raise ValueError('Empty Treasury CSV')
+    norm = [h.strip().lower().replace(' ', '') for h in header]
+    col = next((i for i, h in enumerate(norm) if h in ('1mo', '1month')), None)
+    if col is None or norm[0] != 'date':
+        raise ValueError(f'Unexpected Treasury CSV header: {header}')
+    rows = []
+    for row in reader:
+        if len(row) <= col or not row[0].strip() or row[col].strip() in ('', 'N/A'):
+            continue
+        month, day, year = row[0].strip().split('/')
+        y = float(row[col])
+        if not math.isfinite(y) or not (-1 < y < 25):
+            raise ValueError(f'Implausible T-bill yield on {row[0]}: {y}')
+        rows.append((f'{int(year):04d}-{int(month):02d}-{int(day):02d}', y))
+    if not rows:
+        raise ValueError('No risk-free observations from Treasury')
+    return sorted(rows)
+
+
+TREASURY_URL = ('https://home.treasury.gov/resource-center/data-chart-center/interest-rates/'
+                'daily-treasury-rates.csv/{year}/all?type=daily_treasury_yield_curve'
+                '&field_tdr_date_value={year}&page&_format=csv')
+
+
+def download_treasury_risk_free(config, end_iso):
+    first = d(reference_date(config)).year
+    rows = []
+    for year in range(first, d(end_iso).year + 1):
+        rows += parse_treasury_csv(fetch_text(TREASURY_URL.format(year=year)))
+    return sorted(set(rows))
+
+
 def download_risk_free(config, end_iso):
+    """1-month T-bill yields. FRED first (the documented source); if it keeps failing the same
+    series is read from the U.S. Treasury. If both fail the run fails closed."""
     rf = config['risk_free']
     start = (d(reference_date(config)) - timedelta(days=14)).isoformat()
     url = FRED_URL.format(series=rf['series'], start=start, end=end_iso)
-    return parse_fred_csv(fetch_text(url))
+    try:
+        rows = parse_fred_csv(fetch_text(url, attempts=2, timeout=30, backoff=(5,)))
+        print('Risk-free source: FRED', flush=True)
+        return rows
+    except (RuntimeError, ValueError) as e:
+        print(f'FRED unavailable ({e!r}); falling back to U.S. Treasury', flush=True)
+    rows = download_treasury_risk_free(config, end_iso)
+    print('Risk-free source: U.S. Treasury 1-month par yield', flush=True)
+    return rows
 
 
 def rf_for_interval(rates, prev_iso, cur_iso, max_stale):
