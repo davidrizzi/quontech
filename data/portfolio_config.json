@@ -33,6 +33,27 @@
         {"ticker":"GLD","shares":29085,"official_basis_usd":11110760.85,"official_reference_close":382.01,"asset_class":"Real Assets"},
         {"ticker":"PDBC","shares":552516,"official_basis_usd":11111096.76,"official_reference_close":20.11,"asset_class":"Real Assets"}
       ]
+    },
+    {
+      "label": "Round 2",
+      "reference_date": "2026-11-06",
+      "valid_until": "2026-11-27",
+      "cash_usd": 528.07,
+      "basis_description": "Official Bloomberg 6 Nov 2026 closing-price construction (NAV USD 98,000,724.83); trades entered 7-8 Nov in PRTU. 9 ETFs (bond ETF quantities include PRTU distribution reinvestment) + DG, CHWY, MU. Tracking error vs SAA 3.90%.",
+      "positions": [
+        {"ticker":"IVV","shares":12944,"official_basis_usd":9561473.92,"official_reference_close":738.68,"asset_class":"Equities"},
+        {"ticker":"VEA","shares":142810,"official_basis_usd":9696799.00,"official_reference_close":67.90,"asset_class":"Equities"},
+        {"ticker":"XLV","shares":56159,"official_basis_usd":10378183.20,"official_reference_close":184.80,"asset_class":"Equities"},
+        {"ticker":"XLE","shares":145426,"official_basis_usd":8961150.12,"official_reference_close":61.62,"asset_class":"Equities"},
+        {"ticker":"TIP","shares":94170.738,"official_basis_usd":10007524.33,"official_reference_close":106.27,"asset_class":"Fixed Income"},
+        {"ticker":"SHY","shares":122354.125,"official_basis_usd":9987767.22,"official_reference_close":81.63,"asset_class":"Fixed Income"},
+        {"ticker":"IGSB","shares":193834.222,"official_basis_usd":9996030.83,"official_reference_close":51.57,"asset_class":"Fixed Income"},
+        {"ticker":"GLD","shares":25978,"official_basis_usd":9677324.56,"official_reference_close":372.52,"asset_class":"Real Assets"},
+        {"ticker":"PDBC","shares":493478,"official_basis_usd":9262582.06,"official_reference_close":18.77,"asset_class":"Real Assets"},
+        {"ticker":"DG","shares":14753,"official_basis_usd":1973213.75,"official_reference_close":133.75,"asset_class":"Equities (single stock)"},
+        {"ticker":"CHWY","shares":272671,"official_basis_usd":6151457.76,"official_reference_close":22.56,"asset_class":"Equities (single stock)"},
+        {"ticker":"MU","shares":3401,"official_basis_usd":2346690.00,"official_reference_close":690.00,"asset_class":"Equities (single stock)"}
+      ]
     }
   ],
   "intraday_reference_not_eod": {
