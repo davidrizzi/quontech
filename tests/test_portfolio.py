@@ -298,5 +298,44 @@ class PortfolioTests(unittest.TestCase):
             urllib.request.urlopen = original
 
 
+    def test_treasury_csv_parsing_picks_one_month_column(self):
+        text = ('"Date","1 Mo","1.5 Mo","2 Mo","3 Mo"\n'
+                '"11/09/2026","4.04","4.13","4.19","4.24"\n'
+                '"11/06/2026","4.01","4.10","4.15","4.20"\n'
+                '"11/05/2026","","4.10","4.15","4.20"\n')
+        self.assertEqual(qt.parse_treasury_csv(text), [('2026-11-06', 4.01), ('2026-11-09', 4.04)])
+        with self.assertRaisesRegex(ValueError, 'Unexpected Treasury CSV header'):
+            qt.parse_treasury_csv('"Date","3 Mo"\n"11/09/2026","4.24"\n')
+
+    def test_risk_free_falls_back_to_treasury_when_fred_fails(self):
+        original = qt.fetch_text
+        calls = []
+
+        def fake(url, **kw):
+            calls.append(url)
+            if 'fred.stlouisfed.org' in url:
+                raise RuntimeError('FRED down')
+            return '"Date","1 Mo"\n"11/06/2026","4.01"\n"11/09/2026","4.04"\n'
+        qt.fetch_text = fake
+        try:
+            rows = qt.download_risk_free(self.full_config, '2026-11-09')
+        finally:
+            qt.fetch_text = original
+        self.assertEqual(rows, [('2026-11-06', 4.01), ('2026-11-09', 4.04)])
+        self.assertTrue(any('treasury.gov' in u for u in calls))
+
+    def test_risk_free_fails_closed_when_both_sources_fail(self):
+        original = qt.fetch_text
+
+        def boom(url, **kw):
+            raise RuntimeError('down')
+        qt.fetch_text = boom
+        try:
+            with self.assertRaises(RuntimeError):
+                qt.download_risk_free(self.full_config, '2026-11-09')
+        finally:
+            qt.fetch_text = original
+
+
 if __name__ == '__main__':
     unittest.main()
