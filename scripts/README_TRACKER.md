@@ -49,7 +49,7 @@ in `data/portfolio_config.json`:
 ```
 
 Rules checked by the script: `reference_date` = previous `valid_until`; shares are
-integers; `official_basis_usd` = shares x Bloomberg close (within USD 1). Use the
+positive numbers (fractions allowed, e.g. reinvested bond-ETF distributions); `official_basis_usd` = shares x Bloomberg close (within USD 1). Use the
 **complete** portfolio after the trades (all positions, not only the new ones), with
 Bloomberg closes of the reference date, and the cash left in PRTU. Then run the workflow.
 Use valid_until "2026-12-27" for the last period.

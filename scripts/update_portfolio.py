@@ -35,6 +35,8 @@ import io
 import json
 import math
 import statistics
+import time
+import urllib.error
 import urllib.request
 from datetime import date, datetime, timedelta
 from decimal import Decimal
@@ -75,8 +77,9 @@ def load_config(path=CONFIG_PATH):
         if not tickers or len(set(tickers)) != len(tickers):
             raise ValueError(f'{p["label"]}: empty or duplicate tickers')
         for x in p['positions']:
-            if not (isinstance(x['shares'], int) and x['shares'] > 0):
-                raise ValueError(f'{p["label"]} {x["ticker"]}: shares must be a positive integer')
+            # Fractional quantities are legitimate: PRTU reinvests distributions of the bond ETFs.
+            if isinstance(x['shares'], bool) or not isinstance(x['shares'], (int, float)) or not x['shares'] > 0:
+                raise ValueError(f'{p["label"]} {x["ticker"]}: shares must be a positive number')
             basis = money(x['official_basis_usd'])
             implied = money(x['shares']) * money(x['official_reference_close'])
             if basis <= 0 or abs(implied - basis) > Decimal('1.00'):
@@ -161,13 +164,35 @@ def parse_fred_csv(text):
     return sorted(rows)
 
 
+def fetch_text(url, attempts=4, timeout=45, backoff=(5, 15, 30), sleep=time.sleep):
+    """GET a text resource, retrying transient network failures (FRED is often slow from cloud runners).
+
+    Only timeouts, connection errors and HTTP 5xx/429 are retried; anything else fails at once.
+    After the last attempt the error is raised, so the workflow still fails closed."""
+    last = None
+    for attempt in range(attempts):
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': 'quontech-nav-tracker/1.0'})
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.read().decode('utf8')
+        except urllib.error.HTTPError as e:
+            if e.code != 429 and e.code < 500:
+                raise
+            last = e
+        except (TimeoutError, OSError) as e:  # URLError, socket timeouts and resets are OSError subclasses
+            last = e
+        if attempt + 1 < attempts:
+            wait = backoff[min(attempt, len(backoff) - 1)]
+            print(f'Attempt {attempt + 1}/{attempts} failed ({last!r}); retrying in {wait}s', flush=True)
+            sleep(wait)
+    raise RuntimeError(f'Download failed after {attempts} attempts: {url}') from last
+
+
 def download_risk_free(config, end_iso):
     rf = config['risk_free']
     start = (d(reference_date(config)) - timedelta(days=14)).isoformat()
     url = FRED_URL.format(series=rf['series'], start=start, end=end_iso)
-    req = urllib.request.Request(url, headers={'User-Agent': 'quontech-nav-tracker/1.0'})
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return parse_fred_csv(resp.read().decode('utf8'))
+    return parse_fred_csv(fetch_text(url))
 
 
 def rf_for_interval(rates, prev_iso, cur_iso, max_stale):
