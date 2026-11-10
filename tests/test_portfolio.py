@@ -26,7 +26,10 @@ def business_days(start, end):
 class PortfolioTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.config = qt.load_config()
+        cls.full_config = qt.load_config()
+        # Legacy tests exercise the Round 1 period on its own; the real two-period file is tested separately.
+        cls.config = copy.deepcopy(cls.full_config)
+        cls.config['periods'] = cls.config['periods'][:1]
 
     def p1(self, config=None):
         return (config or self.config)['periods'][0]
@@ -209,6 +212,90 @@ class PortfolioTests(unittest.TestCase):
             fn.write_text(json.dumps(cfg))
             with self.assertRaisesRegex(ValueError, 'contiguous'):
                 qt.load_config(fn)
+
+
+    # ---------------------------------------------------------------- Round 2 holdings and network retries
+    def test_round2_period_reconciles_to_official_nav(self):
+        p2 = self.full_config['periods'][1]
+        self.assertEqual((p2['reference_date'], p2['valid_until']), ('2026-11-06', '2026-11-27'))
+        total = sum(qt.money(x['official_basis_usd']) for x in p2['positions']) + qt.money(p2['cash_usd'])
+        self.assertAlmostEqual(float(total), 98000724.83, delta=0.05)
+        self.assertEqual(len(p2['positions']), 12)
+
+    def test_real_two_period_config_chains_and_is_active(self):
+        days1 = business_days('2026-10-16', '2026-11-06')
+        bars = self.make_bars(days1, growth=0.0)
+        for x in self.full_config['periods'][1]['positions']:
+            tk, ref = x['ticker'], float(x['official_reference_close'])
+            series = bars.setdefault(tk, {})
+            series['2026-11-06'] = {'close': ref, 'dividend': 0, 'split': 0}
+            series['2026-11-09'] = {'close': ref * 1.01, 'dividend': 0, 'split': 0}
+        for tk in bars:
+            bars[tk].setdefault('2026-11-09', {'close': bars[tk]['2026-11-06']['close'], 'dividend': 0, 'split': 0})
+        pts = qt.construct_series(self.full_config, bars, today=date(2026, 11, 10))
+        self.assertEqual(qt.holdings_status(self.full_config, date(2026, 11, 10)), 'active')
+        self.assertEqual(pts[-1]['period'], 'Round 2')
+        self.assertEqual(pts[-1]['date'], '2026-11-09')
+        self.assertGreater(pts[-1]['daily_return_pct'], 0.9)
+
+    def test_fractional_shares_are_accepted(self):
+        cfg = copy.deepcopy(self.full_config)
+        cfg['periods'][1]['positions'][4]['shares'] = 94170.738
+        with tempfile.TemporaryDirectory() as tmp:
+            fn = Path(tmp) / 'c.json'
+            fn.write_text(json.dumps(cfg))
+            qt.load_config(fn)
+        cfg['periods'][1]['positions'][4]['shares'] = -1
+        with tempfile.TemporaryDirectory() as tmp:
+            fn = Path(tmp) / 'c.json'
+            fn.write_text(json.dumps(cfg))
+            with self.assertRaisesRegex(ValueError, 'positive number'):
+                qt.load_config(fn)
+
+    def test_fetch_text_retries_timeouts_then_succeeds(self):
+        import urllib.request
+        calls = {'n': 0}
+
+        class Resp:
+            def __enter__(self): return self
+            def __exit__(self, *a): return False
+            def read(self): return b'ok'
+
+        def fake(req, timeout):
+            calls['n'] += 1
+            if calls['n'] < 3:
+                raise TimeoutError('The read operation timed out')
+            return Resp()
+
+        original = urllib.request.urlopen
+        urllib.request.urlopen = fake
+        try:
+            waits = []
+            self.assertEqual(qt.fetch_text('https://x.test', sleep=waits.append), 'ok')
+        finally:
+            urllib.request.urlopen = original
+        self.assertEqual(calls['n'], 3)
+        self.assertEqual(waits, [5, 15])
+
+    def test_fetch_text_fails_closed_after_last_attempt_and_skips_client_errors(self):
+        import urllib.error
+        import urllib.request
+        original = urllib.request.urlopen
+        try:
+            urllib.request.urlopen = lambda req, timeout: (_ for _ in ()).throw(TimeoutError('t'))
+            with self.assertRaisesRegex(RuntimeError, 'after 3 attempts'):
+                qt.fetch_text('https://x.test', attempts=3, sleep=lambda s: None)
+            n = {'c': 0}
+
+            def not_found(req, timeout):
+                n['c'] += 1
+                raise urllib.error.HTTPError('https://x.test', 404, 'nf', {}, None)
+            urllib.request.urlopen = not_found
+            with self.assertRaises(urllib.error.HTTPError):
+                qt.fetch_text('https://x.test', sleep=lambda s: None)
+            self.assertEqual(n['c'], 1)
+        finally:
+            urllib.request.urlopen = original
 
 
 if __name__ == '__main__':
