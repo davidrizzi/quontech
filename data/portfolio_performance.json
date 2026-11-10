@@ -5,25 +5,25 @@
   "currency": "USD",
   "reference_date": "2026-10-16",
   "first_observation": "2026-10-19",
-  "holdings_valid_until": "2026-11-06",
-  "as_of": "2026-11-05",
-  "last_updated_utc": "2026-11-06T14:20:36+00:00",
+  "holdings_valid_until": "2026-11-27",
+  "as_of": "2026-11-09",
+  "last_updated_utc": "2026-11-10T17:07:04+00:00",
   "source": "Yahoo Finance prices via unofficial yfinance; Bloomberg initial basket; FRED DGS1MO risk-free",
   "method": "Bloomberg reference-close basket values + vendor closing price relatives, chain-linked across holding periods; cash + declared dividends on ex-dates; not exact PRTU NAV. Splits force manual review.",
   "metrics_method": "Return compounded over the window. Volatility = sample st. dev. of daily returns x sqrt(252). Sharpe = (mean daily return - mean daily 1-month T-bill rate [yield/252]) / st. dev. of daily returns x sqrt(252). Volatility and Sharpe shown from 5 daily returns.",
   "risk_free_source": "1-month US Treasury bill (FRED DGS1MO, comparable to Bloomberg USGG1M). Yield known at the previous close, divided by 252 for each daily return.",
   "initial_capital_usd": 100000000.0,
-  "latest_nav_usd": 98006985.39,
-  "latest_return_pct": -1.993015,
+  "latest_nav_usd": 98989840.77,
+  "latest_return_pct": -1.010159,
   "metrics": {
     "to_date": {
       "start_close": "2026-10-16",
-      "as_of_close": "2026-11-05",
-      "n_returns": 14,
-      "return_pct": -1.993,
-      "volatility_pct": 7.4877,
-      "sharpe": -5.3461,
-      "risk_free_ann_pct": 4.0807
+      "as_of_close": "2026-11-09",
+      "n_returns": 16,
+      "return_pct": -1.0102,
+      "volatility_pct": 8.5527,
+      "sharpe": -2.3052,
+      "risk_free_ann_pct": 4.0737
     },
     "milestones": [
       {
@@ -31,7 +31,14 @@
         "label": "First round",
         "start": "2026-10-16",
         "as_of": "2026-11-06",
-        "status": "pending"
+        "status": "final",
+        "start_close": "2026-10-16",
+        "as_of_close": "2026-11-06",
+        "n_returns": 15,
+        "return_pct": -2.095,
+        "volatility_pct": 7.217,
+        "sharpe": -5.4562,
+        "risk_free_ann_pct": 4.0773
       },
       {
         "key": "second_round",
@@ -183,6 +190,24 @@
       "index_100": 98.006985,
       "daily_return_pct": -1.322672,
       "risk_free_pct": 0.0159127
+    },
+    {
+      "date": "2026-11-06",
+      "period": "Round 1 SAA",
+      "nav_usd": 97905001.23,
+      "return_pct": -2.094999,
+      "index_100": 97.905001,
+      "daily_return_pct": -0.104058,
+      "risk_free_pct": 0.01599206
+    },
+    {
+      "date": "2026-11-09",
+      "period": "Round 2",
+      "nav_usd": 98989840.77,
+      "return_pct": -1.010159,
+      "index_100": 98.989841,
+      "daily_return_pct": 1.108053,
+      "risk_free_pct": 0.01595238
     }
   ]
 }
