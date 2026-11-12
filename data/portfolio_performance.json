@@ -6,24 +6,24 @@
   "reference_date": "2026-10-16",
   "first_observation": "2026-10-19",
   "holdings_valid_until": "2026-11-27",
-  "as_of": "2026-11-10",
-  "last_updated_utc": "2026-11-11T14:29:18+00:00",
+  "as_of": "2026-11-11",
+  "last_updated_utc": "2026-11-12T15:21:00+00:00",
   "source": "Yahoo Finance prices via unofficial yfinance; Bloomberg initial basket; FRED DGS1MO risk-free",
   "method": "Bloomberg reference-close basket values + vendor closing price relatives, chain-linked across holding periods; cash + declared dividends on ex-dates; not exact PRTU NAV. Splits force manual review.",
   "metrics_method": "Return compounded over the window. Volatility = sample st. dev. of daily returns x sqrt(252). Sharpe = (mean daily return - mean daily 1-month T-bill rate [yield/252]) / st. dev. of daily returns x sqrt(252). Volatility and Sharpe shown from 5 daily returns.",
   "risk_free_source": "1-month US Treasury bill (FRED DGS1MO, comparable to Bloomberg USGG1M). Yield known at the previous close, divided by 252 for each daily return.",
   "initial_capital_usd": 100000000.0,
-  "latest_nav_usd": 98392703.29,
-  "latest_return_pct": -1.607297,
+  "latest_nav_usd": 99151166.15,
+  "latest_return_pct": -0.848834,
   "metrics": {
     "to_date": {
       "start_close": "2026-10-16",
-      "as_of_close": "2026-11-10",
-      "n_returns": 17,
-      "return_pct": -1.6073,
-      "volatility_pct": 8.5392,
-      "sharpe": -3.2481,
-      "risk_free_ann_pct": 4.0718
+      "as_of_close": "2026-11-11",
+      "n_returns": 18,
+      "return_pct": -0.8488,
+      "volatility_pct": 8.6481,
+      "sharpe": -1.8095,
+      "risk_free_ann_pct": 4.0706
     },
     "milestones": [
       {
@@ -35,9 +35,9 @@
         "start_close": "2026-10-16",
         "as_of_close": "2026-11-06",
         "n_returns": 15,
-        "return_pct": -2.095,
-        "volatility_pct": 7.217,
-        "sharpe": -5.4562,
+        "return_pct": -1.9993,
+        "volatility_pct": 7.0634,
+        "sharpe": -5.3442,
         "risk_free_ann_pct": 4.0773
       },
       {
@@ -158,65 +158,74 @@
     {
       "date": "2026-11-02",
       "period": "Round 1 SAA",
-      "nav_usd": 99289986.34,
-      "return_pct": -0.710014,
-      "index_100": 99.289986,
-      "daily_return_pct": -0.804528,
+      "nav_usd": 99385722.59,
+      "return_pct": -0.614277,
+      "index_100": 99.385723,
+      "daily_return_pct": -0.708883,
       "risk_free_pct": 0.01611111
     },
     {
       "date": "2026-11-03",
       "period": "Round 1 SAA",
-      "nav_usd": 99036351.6,
-      "return_pct": -0.963648,
-      "index_100": 99.036352,
-      "daily_return_pct": -0.255448,
+      "nav_usd": 99132087.85,
+      "return_pct": -0.867912,
+      "index_100": 99.132088,
+      "daily_return_pct": -0.255202,
       "risk_free_pct": 0.01607143
     },
     {
       "date": "2026-11-04",
       "period": "Round 1 SAA",
-      "nav_usd": 99320672.57,
-      "return_pct": -0.679327,
-      "index_100": 99.320673,
-      "daily_return_pct": 0.287087,
+      "nav_usd": 99416408.83,
+      "return_pct": -0.583591,
+      "index_100": 99.416409,
+      "daily_return_pct": 0.28681,
       "risk_free_pct": 0.01599206
     },
     {
       "date": "2026-11-05",
       "period": "Round 1 SAA",
-      "nav_usd": 98006985.39,
-      "return_pct": -1.993015,
-      "index_100": 98.006985,
-      "daily_return_pct": -1.322672,
+      "nav_usd": 98102721.64,
+      "return_pct": -1.897278,
+      "index_100": 98.102722,
+      "daily_return_pct": -1.321399,
       "risk_free_pct": 0.0159127
     },
     {
       "date": "2026-11-06",
       "period": "Round 1 SAA",
-      "nav_usd": 97905001.23,
-      "return_pct": -2.094999,
-      "index_100": 97.905001,
-      "daily_return_pct": -0.104058,
+      "nav_usd": 98000737.48,
+      "return_pct": -1.999263,
+      "index_100": 98.000737,
+      "daily_return_pct": -0.103957,
       "risk_free_pct": 0.01599206
     },
     {
       "date": "2026-11-09",
       "period": "Round 2",
-      "nav_usd": 98989840.77,
-      "return_pct": -1.010159,
-      "index_100": 98.989841,
+      "nav_usd": 99086637.83,
+      "return_pct": -0.913362,
+      "index_100": 99.086638,
       "daily_return_pct": 1.108053,
       "risk_free_pct": 0.01595238
     },
     {
       "date": "2026-11-10",
       "period": "Round 2",
-      "nav_usd": 98392703.29,
-      "return_pct": -1.607297,
-      "index_100": 98.392703,
+      "nav_usd": 98488916.44,
+      "return_pct": -1.511084,
+      "index_100": 98.488916,
       "daily_return_pct": -0.603231,
       "risk_free_pct": 0.01603175
+    },
+    {
+      "date": "2026-11-11",
+      "period": "Round 2",
+      "nav_usd": 99151166.15,
+      "return_pct": -0.848834,
+      "index_100": 99.151166,
+      "daily_return_pct": 0.67241,
+      "risk_free_pct": 0.01607143
     }
   ]
 }
