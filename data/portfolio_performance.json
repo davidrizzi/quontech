@@ -6,24 +6,24 @@
   "reference_date": "2026-10-16",
   "first_observation": "2026-10-19",
   "holdings_valid_until": "2026-11-27",
-  "as_of": "2026-11-18",
-  "last_updated_utc": "2026-11-19T15:49:56+00:00",
+  "as_of": "2026-11-19",
+  "last_updated_utc": "2026-11-20T15:31:36+00:00",
   "source": "Yahoo Finance prices via unofficial yfinance; Bloomberg initial basket; FRED DGS1MO risk-free",
   "method": "Bloomberg reference-close basket values + vendor closing price relatives, chain-linked across holding periods; cash + declared dividends on ex-dates; not exact PRTU NAV. Splits force manual review.",
   "metrics_method": "Return compounded over the window. Volatility = sample st. dev. of daily returns x sqrt(252). Sharpe = (mean daily return - mean daily 1-month T-bill rate [yield/252]) / st. dev. of daily returns x sqrt(252). Volatility and Sharpe shown from 5 daily returns.",
   "risk_free_source": "1-month US Treasury bill (FRED DGS1MO, comparable to Bloomberg USGG1M). Yield known at the previous close, divided by 252 for each daily return.",
   "initial_capital_usd": 100000000.0,
-  "latest_nav_usd": 95436168.16,
-  "latest_return_pct": -4.563832,
+  "latest_nav_usd": 94598308.3,
+  "latest_return_pct": -5.401692,
   "metrics": {
     "to_date": {
       "start_close": "2026-10-16",
-      "as_of_close": "2026-11-18",
-      "n_returns": 23,
-      "return_pct": -4.5638,
-      "volatility_pct": 9.5613,
-      "sharpe": -5.7279,
-      "risk_free_ann_pct": 4.0752
+      "as_of_close": "2026-11-19",
+      "n_returns": 24,
+      "return_pct": -5.4017,
+      "volatility_pct": 9.6048,
+      "sharpe": -6.4419,
+      "risk_free_ann_pct": 4.0762
     },
     "milestones": [
       {
@@ -271,6 +271,15 @@
       "index_100": 95.436168,
       "daily_return_pct": -1.118153,
       "risk_free_pct": 0.01623016
+    },
+    {
+      "date": "2026-11-19",
+      "period": "Round 2",
+      "nav_usd": 94598308.3,
+      "return_pct": -5.401692,
+      "index_100": 94.598308,
+      "daily_return_pct": -0.877927,
+      "risk_free_pct": 0.01626984
     }
   ]
 }
